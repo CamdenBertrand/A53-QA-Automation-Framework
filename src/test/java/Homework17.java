@@ -64,7 +64,7 @@ public class Homework17 extends BaseTest{
     }
 
     public void clickPlaylist(){
-        WebElement selectedPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li:nth-child(5)"));
+        WebElement selectedPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper>header>div.song-list-controls>div>section.existing-playlists>ul>li:nth-child(5)"));
         selectedPlaylist.click();
     }
 
