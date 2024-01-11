@@ -4,7 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework19 extends BaseTest{
+public class Homework20 extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
         navigateToUrl();
@@ -19,15 +19,12 @@ public class Homework19 extends BaseTest{
     }
 
     private void clickXPlaylist() {
-        //WebElement xPlaylistButton = driver.findElement(By.cssSelector("button.del.btn-delete-playlist"));
         WebElement xPlaylistButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.del.btn-delete-playlist")));
         xPlaylistButton.click();
     }
 
     private void clickPlaylist() {
-        //WebElement firstPlaylist = driver.findElement(By.xpath("//*[@id='playlists']/ul/li[3]"));
         WebElement firstPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']/ul/li[3]")));
         firstPlaylist.click();
     }
-
 }
