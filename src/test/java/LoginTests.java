@@ -1,3 +1,5 @@
+import Pages.LoginPage;
+import Pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -8,6 +10,8 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
 
+    LoginPage loginPage = new LoginPage(driver);
+    HomePage homePage = new HomePage(driver);
     @Test
     public void navigateToKoel() {
 
@@ -26,31 +30,27 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
 
     }
-@Test (enabled = false)
+@Test
     public void loginWithInvalidEmailValidPassword() throws InterruptedException {
 
         //navigateToUrl();
 
-        provideEmail("bad@email.com");
-
-        providePassword("te$t$tudent");
-
-        clickSubmit();
+    loginPage.provideEmail("bad@email.com");
+    loginPage.providePassword("teststudent");
+    loginPage.clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
         //driver.quit();
     }
-    @Test (enabled = false)
-    public void loginWithValidEmailInvalidPassword() throws InterruptedException {
+    @Test
+    public void loginWithValidEmailInvalidPassword() {
 
         //navigateToUrl();
 
-        provideEmail("demo@class.com");
-
-        providePassword("badpassword");
-
-        clickSubmit();
+        loginPage.provideEmail("camden.bertrand@testpro.io");
+        loginPage.providePassword("teststudent");
+        loginPage.clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
@@ -72,6 +72,15 @@ public class LoginTests extends BaseTest {
                 {"demo@class.com", ""},
                 {"", ""}
         };
+    }
+
+    @Test
+    public void loginWithCorrectCredentials(){
+
+        loginPage.provideEmail("camden.bertrand@testpro.io");
+        loginPage.providePassword("te$t$tudent");
+        loginPage.clickSubmit();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
 }

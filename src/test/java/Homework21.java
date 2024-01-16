@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class Homework21 extends BaseTest{
     String newPlaylistName = "Sample Edited Playlist";
     @Test
-    public void renamePlaylist(){
+    public void renamePlaylist() {
         String updateplaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
         logInToKoelApp();

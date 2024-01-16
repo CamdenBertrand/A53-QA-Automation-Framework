@@ -17,12 +17,12 @@ import java.time.Duration;
 public class BaseTest {
     public WebDriver driver = null;
 
-    public WebDriverWait wait;
+    public WebDriverWait wait = null;
 
     public Wait<WebDriver> fluentWait;
 
-    public String url;
-    public Actions actions;
+    public String url = null;
+    public static Actions actions = null;
 
 
     @BeforeSuite
@@ -37,9 +37,7 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         fluentWait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(2))
