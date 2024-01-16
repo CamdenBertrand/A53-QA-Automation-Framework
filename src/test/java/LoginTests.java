@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
 
-    LoginPage loginPage = new LoginPage(driver);
-    HomePage homePage = new HomePage(driver);
+
     @Test
     public void navigateToKoel() {
 
@@ -33,7 +32,8 @@ public class LoginTests extends BaseTest {
 @Test
     public void loginWithInvalidEmailValidPassword() throws InterruptedException {
 
-        //navigateToUrl();
+    LoginPage loginPage = new LoginPage(driver);
+
 
     loginPage.provideEmail("bad@email.com");
     loginPage.providePassword("teststudent");
@@ -46,7 +46,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginWithValidEmailInvalidPassword() {
 
-        //navigateToUrl();
+        LoginPage loginPage = new LoginPage(driver);
+
 
         loginPage.provideEmail("camden.bertrand@testpro.io");
         loginPage.providePassword("teststudent");
@@ -76,6 +77,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginWithCorrectCredentials(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.provideEmail("camden.bertrand@testpro.io");
         loginPage.providePassword("te$t$tudent");
