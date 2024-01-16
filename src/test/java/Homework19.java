@@ -7,10 +7,7 @@ import org.testng.annotations.Test;
 public class Homework19 extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
-        navigateToUrl();
-        provideEmail("camden.bertrand@testpro.io");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        logInToKoelApp();
         clickPlaylist();
         clickXPlaylist();
         String deleteVerifyText = "Deleted playlist \"Automation playlist.\"";

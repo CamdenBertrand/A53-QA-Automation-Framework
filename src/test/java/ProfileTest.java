@@ -11,9 +11,7 @@ public class ProfileTest extends BaseTest{
     @Test
     public void changeProfileName() throws InterruptedException{
         //login
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        logInToKoelApp();
         //navigateToProfile
         clickOnAvatar();
         //Random new name

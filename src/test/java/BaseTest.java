@@ -1,9 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -20,8 +19,10 @@ public class BaseTest {
 
     public WebDriverWait wait;
 
+    public Wait<WebDriver> fluentWait;
 
     public String url;
+    public Actions actions;
 
 
     @BeforeSuite
@@ -38,8 +39,19 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        fluentWait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+                //.ignoring(NoAlertPresentException.class);
+
+        actions = new Actions(driver);
+
         driver.manage().window().maximize();
+
         url = BaseURL;
+
         navigateToUrl();
     }
 
@@ -69,5 +81,11 @@ public class BaseTest {
 
     public void navigateToUrl(){
         driver.get(url);
+    }
+
+    public void logInToKoelApp(){
+        provideEmail("camden.bertrand@testpro.io");
+        providePassword("te$t$tudent");
+        clickSubmit();
     }
 }

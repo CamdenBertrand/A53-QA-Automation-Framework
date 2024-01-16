@@ -7,10 +7,7 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest{
     @Test
     public void playSong() throws InterruptedException {
-        navigateToUrl();
-        provideEmail("camden.bertrand@testpro.io");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        logInToKoelApp();
         clickPlayNextSong();
         clickPlayButton();
         //WebElement soundBars = driver.findElement(By.cssSelector("img[alt='Sound bars']"));

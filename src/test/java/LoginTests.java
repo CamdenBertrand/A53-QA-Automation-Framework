@@ -20,9 +20,7 @@ public class LoginTests extends BaseTest {
 
         //navigateToUrl();
 
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
+        logInToKoelApp();
 
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());
