@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,8 +11,9 @@ public class ProfileTest extends BaseTest{
 
     @Test
     public void changeProfileName() throws InterruptedException{
+        LoginPage loginPage = new LoginPage(driver);
         //login
-        logInToKoelApp();
+        loginPage.logIn();
         //navigateToProfile
         clickOnAvatar();
         //Random new name

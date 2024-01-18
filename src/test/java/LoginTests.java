@@ -20,10 +20,11 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
 
         //navigateToUrl();
 
-        logInToKoelApp();
+        loginPage.logIn();
 
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -59,9 +60,10 @@ public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData")
     public void loginEmptyEmailPassword(String email, String password) throws InterruptedException{
-        provideEmail(email);
-        providePassword(password);
-        clickSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail(email);
+        loginPage.providePassword(password);
+        loginPage.clickSubmitBtnToLogin();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
@@ -85,5 +87,20 @@ public class LoginTests extends BaseTest {
         loginPage.clickSubmit();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
+    /**
+     * login with page factory and fluent interface.
+     */
+    @Test
+    public void loginWithCorrectCredentialsUsingPageFactory(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        //steps
+        loginPage.provideEmailToLogin("camden.bertrand@testpro.io")
+                .providePasswordToLogin("te$t$tudent")
+                .clickSubmitBtnToLogin();
+        //assertion
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
+    }
 
 }
+

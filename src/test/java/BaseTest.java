@@ -59,31 +59,10 @@ public class BaseTest {
     }
 
     //Helper Methods
-    void provideEmail(String email){
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
 
-    void providePassword(String password){
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    void clickSubmit(){
-        //WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submitButton.click();
-    }
 
     public void navigateToUrl(){
         driver.get(url);
     }
 
-    public void logInToKoelApp(){
-        provideEmail("camden.bertrand@testpro.io");
-        providePassword("te$t$tudent");
-        clickSubmit();
-    }
 }

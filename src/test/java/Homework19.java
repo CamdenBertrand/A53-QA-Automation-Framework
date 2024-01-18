@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +8,9 @@ import org.testng.annotations.Test;
 public class Homework19 extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
-        logInToKoelApp();
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.logIn();
         clickPlaylist();
         clickXPlaylist();
         String deleteVerifyText = "Deleted playlist \"Automation playlist.\"";
@@ -26,5 +29,6 @@ public class Homework19 extends BaseTest{
         WebElement firstPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='playlists']/ul/li[3]")));
         firstPlaylist.click();
     }
+
 
 }

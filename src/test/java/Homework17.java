@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,9 +8,9 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        navigateToUrl();
+        LoginPage loginPage = new LoginPage(driver);
 
-        logInToKoelApp();
+        loginPage.logIn();
         searchSong("Dark");
         clickViewAllButton();
         clickFirstSong();

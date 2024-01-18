@@ -1,3 +1,7 @@
+import Pages.AllSongsPage;
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,7 +17,10 @@ public class AllSongsTest extends BaseTest{
     //Tests start here.
     @Test
     public void playSongByContextClick() throws InterruptedException{
-        logInToKoelApp();
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.logIn();
         chooseAllsongList();
         contextClickFirstSong();
         choosePlayOption();
@@ -21,18 +28,39 @@ public class AllSongsTest extends BaseTest{
         Assert.assertTrue(isSongPlaying());
     }
 
+    //the below is an example of refactoring the above method.
+    @Test
+    public void playSongByRightClick() throws InterruptedException{
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        BasePage basePage= new BasePage(driver);
+
+        loginPage.logIn();
+        homePage.goToAllSongsList();
+        allSongsPage.contextClickFirstSong();
+        allSongsPage.choosePlayOption();
+        Assert.assertTrue(basePage.isSongPlaying());
+    }
+
+
     @Test
     public void hoveroverPlayButton() throws InterruptedException{
-        logInToKoelApp();
-        Thread.sleep(2000);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.logIn();
         //Assertion
         Assert.assertTrue(hoverPlay().isDisplayed());
     }
 
     @Test
     public void countSongsInPlaylist() throws InterruptedException {
-        logInToKoelApp();
-        choosePlaylistByName("Playlist Demo");
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        BasePage basePage= new BasePage(driver);
+
+        loginPage.logIn();
+        basePage.choosePlaylistByName("Playlist Demo");
         displayAllSongs();
         Thread.sleep(2000);
         //Assertion
@@ -41,9 +69,11 @@ public class AllSongsTest extends BaseTest{
 
     @Test
     public void renamePlaylist(){
+        LoginPage loginPage = new LoginPage(driver);
+
         String updateplaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
-        logInToKoelApp();
+        loginPage.logIn();
         doubleClickPlaylist();
         enterNewPlaylistName();
         //Assertion
@@ -75,7 +105,7 @@ public class AllSongsTest extends BaseTest{
         return notification.getText();
     }
 
-    private void choosePlayOption() throws InterruptedException{
+    public void choosePlayOption() throws InterruptedException{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li.playback"))).click();
     }
 
@@ -107,9 +137,7 @@ public class AllSongsTest extends BaseTest{
         }
     }
 
-    public void choosePlaylistByName(String playlistName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), '" + playlistName + "')]"))).click();
-    }
+
 
     public int countSongs(){
         return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
@@ -118,5 +146,6 @@ public class AllSongsTest extends BaseTest{
     public String getPlaylistDetails(){ //retrives playlist details from playlist header (displays number of songs in playlist)
         return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
     }
+
 //helper methods end here.
 }

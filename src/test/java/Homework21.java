@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,9 +10,10 @@ public class Homework21 extends BaseTest{
     String newPlaylistName = "Sample Edited Playlist";
     @Test
     public void renamePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
         String updateplaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
-        logInToKoelApp();
+        loginPage.logIn();
         doubleClickPlaylist();
         enterNewPlaylistName();
         //Assertion
@@ -19,8 +21,8 @@ public class Homework21 extends BaseTest{
     }
 
     public void doubleClickPlaylist() {
-        WebElement playlistElelment = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-        actions.doubleClick(playlistElelment).perform();
+        WebElement playlistElement = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        actions.doubleClick(playlistElement).perform();
     }
 
     public void enterNewPlaylistName(){
@@ -34,4 +36,5 @@ public class Homework21 extends BaseTest{
         WebElement notification = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
     }
+
 }
