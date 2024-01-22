@@ -1,4 +1,6 @@
+import Pages.BasePage;
 import Pages.LoginPage;
+import Pages.ProfilePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,18 +14,21 @@ public class ProfileTest extends BaseTest{
     @Test
     public void changeProfileName() throws InterruptedException{
         LoginPage loginPage = new LoginPage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
+        BasePage basePage = new BasePage(driver);
         //login
         loginPage.logIn();
         //navigateToProfile
-        clickOnAvatar();
+        profilePage.clickOnAvatar();
         //Random new name
-        String randomNewName = generateRandomName();
+        String randomNewName = profilePage.generateRandomName();
         //provide current password
-        provideCurrentPassword("te$t$tudent");
+        profilePage.provideCurrentPassword("te$t$tudent");
         //Provide new random name
-        provideNewName(randomNewName);
+        profilePage.provideNewName(randomNewName);
         //click on save button
-        clickSave();
+        profilePage.clickSave();
+        Assert.assertTrue(basePage.successShowMsg().isDisplayed());
         //assertion
         WebElement actualProfileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.view-profile>span")));
         Assert.assertEquals(actualProfileName.getText(), randomNewName);
@@ -32,7 +37,7 @@ public class ProfileTest extends BaseTest{
     }
 
     //helper methods
-    //navigate to profile page
+
     public void clickOnAvatar(){
        // WebElement avatarIcon = driverdeleteVerifyMsg.findElement(By.cssSelector("img.avatar"));
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));

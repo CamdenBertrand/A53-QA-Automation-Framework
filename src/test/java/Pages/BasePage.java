@@ -20,6 +20,8 @@ public class BasePage {
     By soundBarVisualizer = By.cssSelector("img[alt='Sound bars']");
     By allSongsList = By.cssSelector("li a.songs");
 
+    By successShowMsg = By.cssSelector("div.success.show");
+
     public BasePage(WebDriver givenDriver){
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -42,6 +44,9 @@ public class BasePage {
 
     public void choosePlaylistByName(String playlistName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), '" + playlistName + "')]"))).click();
+    }
+    public WebElement successShowMsg(){
+        return findElementUsingByLocator(successShowMsg);
     }
 }
 

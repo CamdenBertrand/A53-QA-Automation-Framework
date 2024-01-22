@@ -61,7 +61,7 @@ public class AllSongsTest extends BaseTest{
 
         loginPage.logIn();
         basePage.choosePlaylistByName("Playlist Demo");
-        displayAllSongs();
+        allSongsPage.displayAllSongs();
         Thread.sleep(2000);
         //Assertion
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));

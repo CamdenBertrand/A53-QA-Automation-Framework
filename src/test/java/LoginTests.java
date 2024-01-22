@@ -21,13 +21,13 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         //navigateToUrl();
 
         loginPage.logIn();
 
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
-        Assert.assertTrue(avatarIcon.isDisplayed());
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
 @Test
