@@ -13,8 +13,8 @@
             <!--</class>-->
             <!--<class name="BaseTest"/>-->
             <class name="ProfileTest"/>
-            <!--<class name="Homework16"/>-->
-            <!--<class name="Homework17"/>-->
+            <!--<class name="RegistrationTest"/>-->
+            <class name="PlaylistTests"/>
             <!--<class name="Homework18"/>-->
             <!--<class name="Homework19"/>-->
             <!--<class name="Homework20"/>-->

@@ -39,8 +39,7 @@ public class BasePage {
     }
 
     public void goToAllSongsList(){
-        findElementUsingByLocator(allSongsList).click();
-    }
+        findElementUsingByLocator(allSongsList).click();}
 
     public void choosePlaylistByName(String playlistName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), '" + playlistName + "')]"))).click();
