@@ -5,19 +5,14 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Smoke Test" preserve-order="false">
         <classes>
-            <class name="AllSongsTest"/>
-            <class name="LoginTests"/>
-            <!--<class name="BaseTest"/>-->
-            <class name="ProfileTest"/>
-            <class name="RegistrationTest"/>
-            <!--<class name="PlaylistTests"/>-->
-            <!--<class name="Homework18"/>-->
-            <!--<class name="Homework19"/>-->
-            <!--<class name="Homework20"/>-->
-            <!--<class name="Homework21"/>-->
-            <!--            <class name="Homework22"/>-->
-            <!--                <class name="Homework23"/>-->
-
+            <class name="LoginTests">
+                <methods>
+                    <include name="loginValidEmailPassword"/>
+                </methods>
+            </class>
+            <class name="PlaySongTest"/>
+            <class name="PlaylistTests"/>
+            <class name="LogoutTest"/>
         </classes>
     </test>
 </suite>

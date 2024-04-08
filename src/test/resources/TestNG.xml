@@ -6,7 +6,8 @@
     <test name="Example Test" preserve-order="false">
         <classes>
 <!--                <class name="AllSongsTest"/>-->
-<!--                <class name="LoginTests"/>-->
+                <class name="LoginTests"/>
+
                 <!--<methods>-->
                     <!--<include name="loginEmptyEmailPassword"/>-->
                 <!--</methods>-->
@@ -15,10 +16,11 @@
             <class name="ProfileTest"/>
             <!--<class name="RegistrationTest"/>-->
             <class name="PlaylistTests"/>
-            <!--<class name="Homework18"/>-->
-            <!--<class name="Homework19"/>-->
+            <class name="PlaySongTest"/>
+            <class name="LogoutTest"/>
+            <!--<class name="DeletePlaylistTest"/>-->
             <!--<class name="Homework20"/>-->
-            <!--<class name="Homework21"/>-->
+            <!--<class name="RenamePlaylistTest"/>-->
 <!--            <class name="Homework22"/>-->
 <!--                <class name="Homework23"/>-->
 

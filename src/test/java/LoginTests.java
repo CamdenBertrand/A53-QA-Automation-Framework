@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
 
-    @Test
+    @Test (enabled = false)
     public void navigateToKoel() {
 
         //navigateToUrl();

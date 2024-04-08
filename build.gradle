@@ -10,15 +10,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.testng:testng:7.6.1'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
+    testImplementation 'org.testng:testng:7.9.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.19.1'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
 }
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
-        //suites "src/test/resources/Smoke.xml"
-        //suites "src/test/resources/Regression.xml"
+        //suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/Smoke.xml"
+        systemProperty "browser", System.getProperty("browser")
+        //suites "src/test/resources/TestNG.xml"
+       // suites "src/test/resources/Regression.xml"
     }
 }
