@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 public class LogoutTest extends BaseTest{
     @Test
     public void logOut(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.logIn();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());

@@ -138,6 +138,11 @@ public class HomePage extends BasePage{
         actions.moveToElement(playBtn).perform();
         return wait.until(ExpectedConditions.visibilityOf(playBtn));
     }
+    public WebElement hoverCreatePlaylist() {
+        WebElement playBtn = driver.findElement(By.cssSelector("#playlists > h1 > i"));
+        actions.moveToElement(playBtn).perform();
+        return wait.until(ExpectedConditions.visibilityOf(playBtn));
+    }
 
 
 

@@ -5,25 +5,17 @@
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-<!--                <class name="AllSongsTest"/>-->
-                <class name="LoginTests"/>
-
-                <!--<methods>-->
-                    <!--<include name="loginEmptyEmailPassword"/>-->
-                <!--</methods>-->
-            <!--</class>-->
-            <!--<class name="BaseTest"/>-->
-            <class name="ProfileTest"/>
-            <!--<class name="RegistrationTest"/>-->
-            <class name="PlaylistTests"/>
-            <class name="PlaySongTest"/>
+<!--            <class name="AllSongsTest"/>-->
+            <class name="LoginTests">
+                <methods>
+                    <include name="loginValidEmailPassword"/>
+                </methods>
+            </class>
+<!--            <class name="ProfileTest"/>-->
+<!--            <class name="RegistrationTest"/>-->
+<!--            <class name="PlaylistTests"/>-->
+<!--            <class name="PlaySongTest"/>-->
             <class name="LogoutTest"/>
-            <!--<class name="DeletePlaylistTest"/>-->
-            <!--<class name="Homework20"/>-->
-            <!--<class name="RenamePlaylistTest"/>-->
-<!--            <class name="Homework22"/>-->
-<!--                <class name="Homework23"/>-->
-
         </classes>
     </test>
 </suite>

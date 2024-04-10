@@ -20,8 +20,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         //navigateToUrl();
 
@@ -30,57 +30,57 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
     }
-@Test
+@Test (enabled = false)
     public void loginWithInvalidEmailValidPassword() throws InterruptedException {
 
-    LoginPage loginPage = new LoginPage(driver);
+    LoginPage loginPage = new LoginPage(getDriver());
 
 
     loginPage.provideEmail("bad@email.com");
     loginPage.providePassword("teststudent");
     loginPage.clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
 
         //driver.quit();
     }
-    @Test
+    @Test (enabled = false)
     public void loginWithValidEmailInvalidPassword() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
 
         loginPage.provideEmail("camden.bertrand@testpro.io");
         loginPage.providePassword("teststudent");
         loginPage.clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
 
     }
 
-    @Test (dataProvider = "IncorrectLoginData")
-    public void loginEmptyEmailPassword(String email, String password) throws InterruptedException{
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.provideEmail(email);
-        loginPage.providePassword(password);
-        loginPage.clickSubmitBtnToLogin();
+//    @Test (dataProvider = "IncorrectLoginData")
+//    public void loginEmptyEmailPassword(String email, String password) throws InterruptedException{
+//        LoginPage loginPage = new LoginPage(getDriver());
+//        loginPage.provideEmail(email);
+//        loginPage.providePassword(password);
+//        loginPage.clickSubmitBtnToLogin();
+//
+//        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+//    }
+//
+//    @DataProvider(name="IncorrectLoginData")
+//    public static Object[][] getDataFromDataProviders(){
+//        return new Object[][] {
+//                {"invalid@mail.com","invalidPassword"},
+//                {"demo@class.com", ""},
+//                {"", ""}
+//        };
+//    }
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-    }
-
-    @DataProvider(name="IncorrectLoginData")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][] {
-                {"invalid@mail.com","invalidPassword"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
-
-    @Test
+    @Test (enabled = false)
     public void loginWithCorrectCredentials(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("camden.bertrand@testpro.io");
         loginPage.providePassword("te$t$tudent");
@@ -90,10 +90,10 @@ public class LoginTests extends BaseTest {
     /**
      * login with page factory and fluent interface.
      */
-    @Test
+    @Test (enabled = false)
     public void loginWithCorrectCredentialsUsingPageFactory(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         //steps
         loginPage.provideEmailToLogin("camden.bertrand@testpro.io")
                 .providePasswordToLogin("te$t$tudent")

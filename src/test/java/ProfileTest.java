@@ -13,9 +13,9 @@ public class ProfileTest extends BaseTest{
 
     @Test
     public void changeProfileName() throws InterruptedException{
-        LoginPage loginPage = new LoginPage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
-        BasePage basePage = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        ProfilePage profilePage = new ProfilePage(getDriver());
+        BasePage basePage = new BasePage(getDriver());
         //login
         loginPage.logIn();
         //navigateToProfile

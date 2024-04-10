@@ -46,7 +46,7 @@ public class AllSongsTest extends BaseTest{
 
     @Test
     public void hoveroverPlayButton() throws InterruptedException{
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
         loginPage.logIn();
         //Assertion
         Assert.assertTrue(hoverPlay().isDisplayed());
@@ -54,10 +54,10 @@ public class AllSongsTest extends BaseTest{
 
     @Test
     public void countSongsInPlaylist() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        BasePage basePage= new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        AllSongsPage allSongsPage = new AllSongsPage(getDriver());
+        BasePage basePage= new BasePage(getDriver());
 
         loginPage.logIn();
         basePage.choosePlaylistByName("Playlist Demo");
@@ -69,7 +69,7 @@ public class AllSongsTest extends BaseTest{
 
     @Test
     public void renamePlaylist(){
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
         String updateplaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
@@ -124,13 +124,13 @@ public class AllSongsTest extends BaseTest{
     }
 
     public WebElement hoverPlay(){
-        WebElement playBtn = driver.findElement(By.cssSelector("span.play"));
+        WebElement playBtn = getDriver().findElement(By.cssSelector("span.play"));
         actions.moveToElement(playBtn).perform();
         return wait.until(ExpectedConditions.visibilityOf(playBtn));
     }
     public void displayAllSongs() throws InterruptedException {
         Thread.sleep(2000);
-        List<WebElement> songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
+        List<WebElement> songList = getDriver().findElements(By.cssSelector("section#playlistWrapper td.title"));
         System.out.println("Number of songs found: " + countSongs());
         for (WebElement e : songList) {
             System.out.println(e.getText());
@@ -140,11 +140,11 @@ public class AllSongsTest extends BaseTest{
 
 
     public int countSongs(){
-        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+        return getDriver().findElements(By.cssSelector("section#playlistWrapper td.title")).size();
     }
 
     public String getPlaylistDetails(){ //retrives playlist details from playlist header (displays number of songs in playlist)
-        return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
+        return getDriver().findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
     }
 
 //helper methods end here.
