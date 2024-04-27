@@ -30,13 +30,24 @@ public class AllSongsTest extends BaseTest{
     }
 
     @Test
-    public void countSongsInPlaylist() throws InterruptedException {
+    public void countSongsInPlaylist() throws InterruptedException{
         logInToKoelApp();
         choosePlaylistByName("Playlist Demo");
         displayAllSongs();
-        Thread.sleep(2000);
-        //Assertion
+        Thread.sleep(5000);
+        //Assertions
         Assert.assertTrue(getPlaylistDetails().contains(String.valueOf(countSongs())));
+    }
+
+    @Test
+    public void countAllAlbums() throws InterruptedException{
+        logInToKoelApp();
+        clickAlbums();
+        clickListView();
+        displayAllAlbums();
+        Thread.sleep(2000);
+        //Assertions
+        Assert.assertEquals(countAlbums(), 22);
     }
 
     @Test
@@ -98,11 +109,11 @@ public class AllSongsTest extends BaseTest{
         actions.moveToElement(playBtn).perform();
         return wait.until(ExpectedConditions.visibilityOf(playBtn));
     }
-    public void displayAllSongs() throws InterruptedException {
+    public void displayAllSongs() throws InterruptedException{
         Thread.sleep(2000);
         List<WebElement> songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
-        System.out.println("Number of songs found: " + countSongs());
-        for (WebElement e : songList) {
+        System.out.println("Number of Songs found: "+countSongs());
+        for (WebElement e : songList){
             System.out.println(e.getText());
         }
     }
@@ -111,8 +122,28 @@ public class AllSongsTest extends BaseTest{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), '" + playlistName + "')]"))).click();
     }
 
+    public void clickAlbums() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='albums']"))).click();
+    }
+    public void clickListView() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("i[class='fa fa-list']"))).click();
+    }
+
+    public void displayAllAlbums() throws InterruptedException {
+        Thread.sleep(5000);
+        List<WebElement> AlbumList = driver.findElements(By.xpath("//*[@id='albumsWrapper']/div/article"));
+        System.out.println("Number of Albums found: " + countAlbums());
+        for (WebElement e : AlbumList) {
+            System.out.println(e.getText());
+        }
+    }
+
     public int countSongs(){
         return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
+    }
+
+    public int countAlbums(){
+        return driver.findElements(By.xpath("//*[@id='albumsWrapper']/div/article")).size();
     }
 
     public String getPlaylistDetails(){ //retrives playlist details from playlist header (displays number of songs in playlist)
